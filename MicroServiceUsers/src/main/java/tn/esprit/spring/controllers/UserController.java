@@ -51,50 +51,12 @@ public class UserController {
 	@Autowired
 	userService userService;
 	
-	@GetMapping("/getUsers")
-	@ResponseBody
-	public ResponseEntity<List<User>> getAllUsers(){
-		return ResponseEntity.ok().body(userService.getUsers());
-	}
-	
-	@PostMapping("/addUser")
-	@ResponseBody
-	public ResponseEntity<User> addUser(@RequestBody User user){
-		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/addUser").toUriString());
-		return ResponseEntity.created(uri).body(userService.addUser(user));
-	}
-	
-	@PutMapping("/updateUser")
-	@ResponseBody
-	public ResponseEntity<?> updateUser(@RequestBody User user){
-		User user2 = userService.getUserById(user.getId());
-		user.setPassword(user2.getPassword());
-		System.out.print(user2.getRoles());
-		user.setRoles(user2.getRoles());
-		
-		return ResponseEntity.ok().body(userService.updateUser(user));
-	}
 
-	@DeleteMapping("/deleteUser/{id}")
-	@ResponseBody
-	public ResponseEntity<?> deleteUser(@PathVariable int id){
-		userService.deleteUser(id);
-		return ResponseEntity.ok().build();
-	}
 
-	
-	@PostMapping("/addRole")
+	@GetMapping("/getUser/{id}")
 	@ResponseBody
-	public ResponseEntity<Role> addUser(@RequestBody Role role){
-		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/addRole").toUriString());
-		return ResponseEntity.created(uri).body(userService.addRole(role));
-	}
-
-	@PostMapping("/addRoleToUser")
-	@ResponseBody
-	public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form){
-		userService.addRoleToUser(form.getUserName(),form.getRoleLibelle());
-		return ResponseEntity.ok().build();
+	public ResponseEntity<User> getUser(@PathVariable int id){
+		return ResponseEntity.ok().body(userService.getUserById(id));
 	}
 	
 	@GetMapping("/refreshToken")
@@ -140,8 +102,10 @@ public class UserController {
 
 }
 
+
 @Data
 class RoleToUserForm{
 	private String userName;
 	private String roleLibelle;
 }
+
