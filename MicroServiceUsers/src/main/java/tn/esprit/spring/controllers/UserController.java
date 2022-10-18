@@ -52,6 +52,7 @@ public class UserController {
 	userService userService;
 	
 
+
 	@GetMapping("/getUser/{id}")
 	@ResponseBody
 	public ResponseEntity<User> getUser(@PathVariable int id){
@@ -101,4 +102,10 @@ public class UserController {
 
 }
 
+
+@Data
+class RoleToUserForm{
+	private String userName;
+	private String roleLibelle;
+}
 

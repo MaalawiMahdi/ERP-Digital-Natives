@@ -5,17 +5,26 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import tn.esprit.spring.entites.User;
 import tn.esprit.spring.services.userService;
 import tn.esprit.spring.services.userServiceImpl;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletContext;
+
+
+import javax.servlet.FilterChain;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,14 +32,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
@@ -41,6 +56,12 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 	private final AuthenticationManager authenticationManager;
 	
 	
+
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
+	
+	private final AuthenticationManager authenticationManager;
+	
+
 	public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
@@ -65,7 +86,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authentication) throws IOException, ServletException {
+
 		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User)authentication.getPrincipal();
+
+		User user = (User)authentication.getPrincipal();
+
 		Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
 		String access_token = JWT.create()
 				.withSubject(user.getUsername())
@@ -82,6 +107,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
 		/*response.setHeader("access_token", access_token);
 		response.setHeader("refresh_token", refresh_token);*/
+
 		ServletContext servletContext = request.getServletContext();
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		userservice = webApplicationContext.getBean(userServiceImpl.class);
@@ -96,6 +122,12 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 		tokens.put("lastname", customUser.getLastName());
 		tokens.put("ROLE", user.getAuthorities().toString());
 		
+
+		
+		Map<String,String> tokens = new HashMap<>();
+		tokens.put("access_token", access_token);
+		tokens.put("refresh_token", refresh_token);
+
 		response.setContentType("application/json");
 		new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     

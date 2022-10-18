@@ -36,6 +36,7 @@ public class userServiceImpl implements userService, UserDetailsService{
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
+
 	@Override
 	public User updateUser(User user) {
 		if (userRepository.existsById(user.getId()))
@@ -55,11 +56,13 @@ public class userServiceImpl implements userService, UserDetailsService{
 		return roleRepository.save(role);
 	}
 	@Override
+
 	public void deleteRole(int id) {
 		roleRepository.deleteById(id);
 		
 	}
 	@Override
+
 	public void addRoleToUser(String userName, String roleLibelle) {
 		User user = userRepository.findByUserName(userName);
 		Role role = roleRepository.findByLibelle(roleLibelle);
@@ -97,9 +100,6 @@ public class userServiceImpl implements userService, UserDetailsService{
 			});
 		return new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(),authorities);
 	}
-	
-
-	
 	
 	
 	
