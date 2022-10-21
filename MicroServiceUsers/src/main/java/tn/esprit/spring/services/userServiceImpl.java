@@ -55,6 +55,12 @@ public class userServiceImpl implements userService, UserDetailsService{
 		return roleRepository.save(role);
 	}
 	@Override
+	public List<Role> getRoles() {
+		List l = new ArrayList<>();
+		roleRepository.findAll().forEach(l::add);
+		return l;
+	}
+	@Override
 	public void deleteRole(int id) {
 		roleRepository.deleteById(id);
 		
@@ -97,6 +103,7 @@ public class userServiceImpl implements userService, UserDetailsService{
 			});
 		return new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(),authorities);
 	}
+	
 	
 
 	
