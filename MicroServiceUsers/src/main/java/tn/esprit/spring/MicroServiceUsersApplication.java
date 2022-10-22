@@ -42,10 +42,9 @@ public class MicroServiceUsersApplication {
 					Role role = new Role(1, "ROLE_SUPER_ADMIN");				
 					userService.addRole(role);				
 				}
-				else {
-					userService.addUser(user);
-					userService.addRoleToUser(user.getUserName(), "ROLE_SUPER_ADMIN");				
-				}
+				userService.addUser(user);
+				userService.addRoleToUser(user.getUserName(),"ROLE_SUPER_ADMIN");				
+				
 			}
 		};
 	}
