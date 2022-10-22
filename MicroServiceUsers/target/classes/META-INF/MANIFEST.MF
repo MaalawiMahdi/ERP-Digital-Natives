@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: MicroServiceUsers
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Mohamed
+Implementation-Vendor-Id: tn.esprit.spring
+Build-Jdk: 1.8.0_60
+Implementation-URL: https://spring.io/projects/spring-boot/MicroServic
+ eUsers
+Created-By: Maven Integration for Eclipse
+Main-Class: tn.esprit.spring.MicroServiceUsersApplication
+
