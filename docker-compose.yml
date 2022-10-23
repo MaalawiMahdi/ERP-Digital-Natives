@@ -6,7 +6,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: microServiceCommande
+      MYSQL_DATABASE: microServiceProduit
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: mysql        
   discovery:
@@ -67,6 +67,20 @@ services:
       NODE_ENV: production
     ports:
       - 3000:3000
-    
+  produit-client:
+    image: microservice-produit
+    build: MicroService-Produit
+    depends_on:
+      - discovery
+      - mysqldb
+    ports:
+      - 8084:8084
+  depot:
+    image: depot
+    build: Microservice-Depot-Node
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3001:3001  
       
   
