@@ -5,7 +5,7 @@ const Router = require("./routes/depot")
 const app = express();
 
 app.use(express.json());
-mongoose.connect('mongodb://localhost:27017/depotDB');
+mongoose.connect('mongodb+srv://admin:adminerp@cluster0.fvej78n.mongodb.net/Depotdb');
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {

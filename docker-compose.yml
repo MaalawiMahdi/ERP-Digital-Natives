@@ -37,6 +37,21 @@ services:
       - discovery
     ports:
       - 8089:8089
+  micro_service_fournisseur:
+    image: micro_service_fournisseur
+    build: MicroService-Fournisseur
+    depends_on:
+      - discovery
+      - mysqldb 
+    ports:
+      - 8090:8090
+  micro_service_emprunt:
+    image:  micro_service_emprunt
+    build: MicroserviceEmprunt-Nodejs
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8091:8091
     
       
   
