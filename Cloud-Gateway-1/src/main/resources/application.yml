@@ -32,6 +32,14 @@ spring:
         uri: http://host.docker.internal:3000/
         predicates:
             - Path=/api/facture/**
+      - id: produit-client
+        uri: http://host.docker.internal:8084/
+        predicates:
+            - Path=/api/produit/**
+      - id: depot
+        uri: http://host.docker.internal:3001/
+        predicates:
+            - Path=/api/depot/**
       
         
 eureka:

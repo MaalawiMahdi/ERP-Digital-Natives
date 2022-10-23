@@ -4,6 +4,6 @@ WORKDIR /NODESERVICEFACTURE
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install --production --silent && mv node_modules ../
 COPY . .
-EXPOSE 3000
+EXPOSE 3001
 RUN chown -R node server.js
 CMD ["npm", "start"]
