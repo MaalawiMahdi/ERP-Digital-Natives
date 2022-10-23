@@ -11,7 +11,7 @@ db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log("Connected successfully");
 });
-app.use(Router);
+app.use("/api/facture",Router);
 
 app.listen(3000, () => {
   console.log("Server is running at port 3000");

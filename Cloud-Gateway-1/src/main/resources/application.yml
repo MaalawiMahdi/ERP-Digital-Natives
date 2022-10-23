@@ -24,6 +24,14 @@ spring:
         uri: http://host.docker.internal:8091/
         predicates:
             - Path=/api/emprunt/**
+      - id: commande-client
+        uri: http://host.docker.internal:8085/
+        predicates:
+            - Path=/api/commande/**
+      - id: facture
+        uri: http://host.docker.internal:3000/
+        predicates:
+            - Path=/api/facture/**
       
         
 eureka:
