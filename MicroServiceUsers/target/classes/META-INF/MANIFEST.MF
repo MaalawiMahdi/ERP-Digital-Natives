@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
+Built-By: votre
+Build-Jdk: 17.0.4.1
 Implementation-Title: MicroServiceUsers
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: mahdi
 Implementation-Vendor-Id: tn.esprit.spring
-Build-Jdk: 1.8.0_261
-Implementation-URL: https://spring.io/projects/spring-boot/MicroServic
- eUsers
-Created-By: Maven Integration for Eclipse
+Implementation-URL: https://spring.io/projects/spring-boot/MicroServiceU
+ sers
 Main-Class: tn.esprit.spring.MicroServiceUsersApplication
+Created-By: Maven Integration for Eclipse
 

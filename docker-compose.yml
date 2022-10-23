@@ -6,7 +6,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: msusers
+      MYSQL_DATABASE: microServiceCommande
       MYSQL_PASSWORD: mysql
       MYSQL_ROOT_PASSWORD: mysql        
   discovery:
@@ -52,6 +52,21 @@ services:
       NODE_ENV: production
     ports:
       - 8091:8091
+  commande-client:
+    image: microservice-commande
+    build: MicroService-Commande
+    depends_on:
+      - discovery
+      - mysqldb
+    ports:
+      - 8085:8085
+  facture:
+    image: facture
+    build: nodeserviceFacture
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
     
       
   
