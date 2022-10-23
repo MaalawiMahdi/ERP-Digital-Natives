@@ -11,12 +11,12 @@ services:
       MYSQL_ROOT_PASSWORD: mysql        
   discovery:
     image: discovery
-    build: D:/ERP/ERP-Digital-Natives/Eureka-Server
+    build: Eureka-Server
     ports:
       - 8761:8761  
   micro_service_user:
     image: micro_service_user
-    build: D:/ERP/ERP-Digital-Natives/MicroServiceUsers
+    build: MicroServiceUsers
     depends_on:
       - discovery
       - mysqldb 
@@ -24,7 +24,7 @@ services:
       - 8082:8082 
   micro_service_employe:
     image: micro_service_employe
-    build: D:/ERP/ERP-Digital-Natives/MicroServiceEmploye
+    build: MicroServiceEmploye
     depends_on:
       - discovery
       - mysqldb 
@@ -32,7 +32,7 @@ services:
       - 8083:8083
   api-gateway:
     image: api-gateway
-    build: D:/ERP/ERP-Digital-Natives/Cloud-Gateway-1
+    build: Cloud-Gateway-1
     depends_on:
       - discovery
     ports:
