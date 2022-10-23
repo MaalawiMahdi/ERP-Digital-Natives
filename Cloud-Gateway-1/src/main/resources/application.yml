@@ -40,6 +40,14 @@ spring:
         uri: http://host.docker.internal:3001/
         predicates:
             - Path=/api/depot/**
+      - id: micro_service_projet
+          uri: http://host.docker.internal:8093/
+          predicates:
+            - Path=/msprojet/**
+      - id: micro_service_collaborateur
+          uri: http://host.docker.internal:8092/
+          predicates:
+            - Path=/mscollaborateur/**
       
         
 eureka:
