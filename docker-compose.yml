@@ -81,6 +81,21 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 3001:3001  
+      - 3001:3001
+  micro_service_colab:
+    image: micro_service_colab
+    build: collaborateur-service
+    depends_on:
+      - discovery
+    ports:
+      - 8092:8092
+  micro_service_projet:
+    image: micro_service_projet
+    build: projet-service
+    depends_on:
+      - discovery
+    ports:
+      - 8093:8093
+      
       
   
